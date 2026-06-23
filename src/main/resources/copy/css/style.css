@@ -1,0 +1,367 @@
+/* =====================================================
+   style.css — Folha de estilos do Copiador de Diretórios
+   Totalmente reformulada para suportar Temas Dark e Light.
+   ===================================================== */
+
+/* ── Variáveis globais de cores por tema ─────────────── */
+
+/* Tema Escuro (Padrão) */
+.theme-dark {
+    -fx-bg-base: #13141c;
+    -fx-bg-gradient: linear-gradient(to bottom right, #1b1d28, #0e0e15);
+    
+    -fx-title-bar-bg: #111218;
+    -fx-text-title: #ffffff;
+    -fx-text-subtitle: #8b8ea8;
+    
+    -fx-card-bg: rgba(255, 255, 255, 0.03);
+    -fx-card-border: rgba(255, 255, 255, 0.08);
+    -fx-card-shadow: transparent;
+    
+    -fx-input-bg: rgba(0, 0, 0, 0.15);
+    -fx-input-border: rgba(255, 255, 255, 0.08);
+    -fx-input-text: #ffffff;
+    -fx-input-prompt: #55556a;
+    -fx-input-chevron: #718096;
+    
+    -fx-input-focused-bg: rgba(0, 242, 254, 0.02);
+    -fx-input-focused-border: #00f2fe;
+    -fx-input-focused-shadow: rgba(0, 242, 254, 0.35);
+    
+    -fx-btn-gradient: linear-gradient(to right, #00b4db, #00f2fe);
+    -fx-btn-text: #ffffff;
+    -fx-btn-shadow: rgba(0, 242, 254, 0.5);
+    
+    -fx-ctrl-btn-text: #718096;
+    -fx-ctrl-btn-hover-bg: rgba(255, 255, 255, 0.08);
+    -fx-ctrl-close-hover-bg: #e53e3e;
+}
+
+/* Tema Claro */
+.theme-light {
+    -fx-bg-base: #f7fafc;
+    -fx-bg-gradient: linear-gradient(to bottom right, #f7fafc, #edf2f7);
+    
+    -fx-title-bar-bg: #ffffff;
+    -fx-text-title: #1a202c;
+    -fx-text-subtitle: #4a5568;
+    
+    -fx-card-bg: rgba(255, 255, 255, 0.7);
+    -fx-card-border: rgba(0, 0, 0, 0.06);
+    -fx-card-shadow: rgba(0, 0, 0, 0.05);
+    
+    -fx-input-bg: #f7fafc;
+    -fx-input-border: rgba(0, 0, 0, 0.08);
+    -fx-input-text: #2d3748;
+    -fx-input-prompt: #a0aec0;
+    -fx-input-chevron: #3182ce;
+    
+    -fx-input-focused-bg: rgba(66, 153, 225, 0.02);
+    -fx-input-focused-border: #3182ce;
+    -fx-input-focused-shadow: rgba(66, 153, 225, 0.25);
+    
+    -fx-btn-gradient: linear-gradient(to right, #319795, #38b2ac);
+    -fx-btn-text: #ffffff;
+    -fx-btn-shadow: rgba(49, 151, 149, 0.35);
+    
+    -fx-ctrl-btn-text: #4a5568;
+    -fx-ctrl-btn-hover-bg: rgba(0, 0, 0, 0.05);
+    -fx-ctrl-close-hover-bg: #e53e3e;
+}
+
+/* ── Painel Principal ──────────────────────────────── */
+.root-pane {
+    -fx-background-color: -fx-bg-gradient;
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-border-color: rgba(255, 255, 255, 0.05);
+    -fx-border-width: 1px;
+}
+
+/* ── Círculos Coloridos de Fundo (Light Mode) ────────── */
+.background-glow-pane {
+    -fx-background-color: transparent;
+}
+
+.glow-spot {
+    -fx-opacity: 0.0; /* Oculto por padrão no tema escuro */
+}
+
+.theme-light .glow-spot {
+    -fx-opacity: 0.45; /* Visível com suavidade no tema claro */
+}
+
+.glow-blue {
+    -fx-fill: #bae6fd; /* Ciano claro */
+}
+
+.glow-green {
+    -fx-fill: #bbf7d0; /* Verde menta claro */
+}
+
+.glow-purple {
+    -fx-fill: #ddd6fe; /* Roxo claro */
+}
+
+/* ── Barra de Título Customizada ────────────────────── */
+.title-bar {
+    -fx-background-color: -fx-title-bar-bg;
+    -fx-background-radius: 12px 12px 0px 0px;
+    -fx-border-color: transparent transparent -fx-card-border transparent;
+    -fx-border-width: 1px;
+    -fx-cursor: move;
+}
+
+.window-title {
+    -fx-text-fill: -fx-text-subtitle;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.window-control-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+    -fx-text-fill: -fx-ctrl-btn-text;
+    -fx-font-size: 10px;
+    -fx-min-width: 26px;
+    -fx-min-height: 20px;
+    -fx-max-width: 26px;
+    -fx-max-height: 20px;
+    -fx-padding: 0px;
+    -fx-cursor: hand;
+}
+
+.window-control-btn:hover {
+    -fx-background-color: -fx-ctrl-btn-hover-bg;
+    -fx-text-fill: -fx-text-title;
+}
+
+.theme-toggle-btn {
+    -fx-font-size: 11px;
+}
+
+.close-btn:hover {
+    -fx-background-color: -fx-ctrl-close-hover-bg;
+    -fx-text-fill: white;
+}
+
+.maximize-btn {
+    -fx-opacity: 0.5;
+}
+
+/* ── Elementos de Texto ────────────────────────────── */
+.title-label {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-title;
+}
+
+.subtitle-flow {
+    -fx-fill: -fx-text-subtitle;
+}
+
+.subtitle-text {
+    -fx-fill: -fx-text-subtitle;
+    -fx-font-size: 12px;
+}
+
+.subtitle-bold {
+    -fx-font-weight: bold;
+    -fx-fill: -fx-text-title;
+}
+
+/* ── Cards Glassmorphic ────────────────────────────── */
+.card {
+    -fx-background-color: -fx-card-bg;
+    -fx-background-radius: 16px;
+    -fx-border-color: -fx-card-border;
+    -fx-border-radius: 16px;
+    -fx-border-width: 1.2px;
+    -fx-effect: dropshadow(three-pass-box, -fx-card-shadow, 15, 0, 0, 4);
+}
+
+.left-card {
+    -fx-min-width: 145px;
+    -fx-max-width: 145px;
+    -fx-min-height: 145px;
+    -fx-max-height: 145px;
+}
+
+.right-card {
+    -fx-min-height: 145px;
+    -fx-max-height: 145px;
+}
+
+/* ── Ícone de Pasta (Glassmorphism 3D) ───────────────── */
+.folder-icon-container {
+    -fx-min-width: 72px;
+    -fx-min-height: 60px;
+}
+
+.folder-back {
+    -fx-min-width: 68px;
+    -fx-max-width: 68px;
+    -fx-min-height: 52px;
+    -fx-max-height: 52px;
+    -fx-shape: "M 0 6 A 6 6 0 0 1 6 0 L 24 0 L 32 8 L 62 8 A 6 6 0 0 1 68 14 L 68 46 A 6 6 0 0 1 62 52 L 6 52 A 6 6 0 0 1 0 46 Z";
+}
+
+.theme-dark .folder-back {
+    -fx-background-color: linear-gradient(to bottom right, #242535, #14141e);
+}
+
+.theme-light .folder-back {
+    -fx-background-color: linear-gradient(to bottom right, #a5b4fc, #6366f1);
+}
+
+.folder-front {
+    -fx-min-width: 70px;
+    -fx-max-width: 70px;
+    -fx-min-height: 44px;
+    -fx-max-height: 44px;
+    -fx-translate-y: 6px;
+    -fx-translate-x: 1px;
+    -fx-shape: "M 0 8 A 8 8 0 0 1 8 0 L 62 0 A 8 8 0 0 1 70 8 L 70 36 A 8 8 0 0 1 62 44 L 8 44 A 8 8 0 0 1 0 36 Z";
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 6, 0, 0, 2);
+}
+
+.theme-dark .folder-front {
+    -fx-background-color: linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(49, 46, 129, 0.6));
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+.theme-light .folder-front {
+    -fx-background-color: linear-gradient(to bottom right, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.35));
+    -fx-border-color: rgba(99, 102, 241, 0.25);
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+/* ── Campos de Entrada ─────────────────────────────── */
+.input-wrapper {
+    -fx-background-color: -fx-input-bg;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-input-border;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1.2px;
+    -fx-padding: 0px 14px;
+    -fx-cursor: hand;
+}
+
+.input-wrapper:hover {
+    -fx-border-color: rgba(0, 242, 254, 0.3);
+}
+
+.theme-light .input-wrapper:hover {
+    -fx-border-color: rgba(49, 130, 206, 0.3);
+}
+
+.input-wrapper-focused {
+    -fx-background-color: -fx-input-focused-bg;
+    -fx-border-color: -fx-input-focused-border;
+    -fx-effect: dropshadow(three-pass-box, -fx-input-focused-shadow, 8, 0, 0, 0);
+}
+
+.custom-text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 8px 0px;
+    -fx-text-fill: -fx-input-text;
+    -fx-prompt-text-fill: -fx-input-prompt;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.custom-text-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.input-chevron {
+    -fx-text-fill: -fx-input-chevron;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 0px 0px 0px 8px;
+}
+
+.input-wrapper:hover .input-chevron {
+    -fx-text-fill: -fx-input-focused-border;
+}
+
+/* ── Botão Iniciar Cópia ────────────────────────────── */
+.action-button {
+    -fx-background-color: -fx-btn-gradient;
+    -fx-text-fill: -fx-btn-text;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 12px;
+    -fx-padding: 10px 24px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, -fx-btn-shadow, 14, 0, 0, 0);
+}
+
+.action-button:hover {
+    -fx-opacity: 0.95;
+    -fx-effect: dropshadow(three-pass-box, -fx-btn-shadow, 18, 0, 0, 0);
+}
+
+.action-button:pressed {
+    -fx-opacity: 0.85;
+}
+
+.action-button:disabled {
+    -fx-opacity: 0.4;
+    -fx-effect: none;
+}
+
+/* ── Barra de Progresso ────────────────────────────── */
+.progress-bar {
+    -fx-pref-height: 6px;
+}
+
+.progress-bar > .track {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 3px;
+}
+
+.theme-light .progress-bar > .track {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar > .bar {
+    -fx-background-color: -fx-btn-gradient;
+    -fx-background-radius: 3px;
+    -fx-background-insets: 0;
+}
+
+/* ── Feedback de Status ────────────────────────────── */
+.status-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: -fx-text-subtitle;
+    -fx-min-height: 35px;
+    -fx-max-width: 450px;
+}
+
+.status-success {
+    -fx-text-fill: #38a169;
+    -fx-font-weight: bold;
+}
+
+.theme-dark .status-success {
+    -fx-text-fill: #48bb78;
+}
+
+.status-error {
+    -fx-text-fill: #e53e3e;
+    -fx-font-weight: bold;
+}
+
+.theme-dark .status-error {
+    -fx-text-fill: #f56565;
+}
