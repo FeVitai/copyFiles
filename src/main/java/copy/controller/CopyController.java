@@ -16,19 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-/**
- * Controller FXML da tela principal.
- *
- * <p>Responsabilidades desta classe:</p>
- * <ul>
- *   <li>Receber eventos de interação do usuário (cliques, ações)</li>
- *   <li>Delegar toda a lógica de negócio ao {@link FileCopyService}</li>
- *   <li>Atualizar os componentes de UI com base nos resultados recebidos</li>
- * </ul>
- */
 public class CopyController {
 
-    // ── Injeção de componentes via @FXML ─────────────────────────────────────
     @FXML private StackPane   rootPane;
     @FXML private HBox        titleBar;
     @FXML private Button      themeBtn;
@@ -42,23 +31,16 @@ public class CopyController {
     @FXML private ProgressBar progressBar;
     @FXML private Label       statusLabel;
 
-    // ── Variáveis para movimentação da janela ─────────────────────────────────
     private double xOffset = 0;
     private double yOffset = 0;
 
-    // ── Dependências (backend) ────────────────────────────────────────────────
     private final FileCopyService fileCopyService = new FileCopyService();
 
-    /**
-     * Inicializa o controller e configura listeners e comportamentos visuais.
-     */
     @FXML
     public void initialize() {
-        // Define o tema escuro por padrão
         rootPane.getStyleClass().add("theme-dark");
         themeBtn.setText("☀");
 
-        // Configura arrastar a janela sem bordas através da barra de título
         titleBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
@@ -69,14 +51,10 @@ public class CopyController {
             stage.setY(event.getScreenY() - yOffset);
         });
 
-        // Configura efeitos visuais de foco nos wrappers dos inputs
         setupFocusEffects(sourceField, sourceWrapper);
         setupFocusEffects(destField, destWrapper);
     }
 
-    /**
-     * Adiciona listeners para aplicar a borda/sombra colorida de foco no container do input.
-     */
     private void setupFocusEffects(TextField field, HBox wrapper) {
         field.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
@@ -86,13 +64,10 @@ public class CopyController {
             }
         });
 
-        // Quando o wrapper for clicado, dá foco ao campo de texto interno
         wrapper.setOnMouseClicked(event -> {
             field.requestFocus();
         });
     }
-
-    // ── Handlers da Barra de Título Customizada ──────────────────────────────
 
     @FXML
     private void onToggleTheme() {
@@ -115,15 +90,12 @@ public class CopyController {
 
     @FXML
     private void onMaximizeDummy() {
-        // A janela é de tamanho fixo, não faz nada
     }
 
     @FXML
     private void onClose() {
         Platform.exit();
     }
-
-    // ── Handlers de eventos de navegação de pastas ───────────────────────────
 
     @FXML
     private void onBrowseSource() {
@@ -135,9 +107,6 @@ public class CopyController {
         browseDirectory("Selecionar diretório de destino", destField);
     }
 
-    /**
-     * Inicia o processo de cópia de forma assíncrona ao clicar no botão principal.
-     */
     @FXML
     private void onStartCopy() {
         String sourcePath = sourceField.getText().trim();
@@ -163,11 +132,6 @@ public class CopyController {
         thread.start();
     }
 
-    // ── Métodos utilitários privados ──────────────────────────────────────────
-
-    /**
-     * Exibe um {@link DirectoryChooser} nativo e popula o campo alvo com o caminho selecionado.
-     */
     private void browseDirectory(String title, TextField target) {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle(title);
@@ -180,9 +144,6 @@ public class CopyController {
         }
     }
 
-    /**
-     * Atualiza a UI com base no resultado retornado pelo {@link FileCopyService}.
-     */
     private void handleResult(CopyResult result) {
         setRunning(false);
         setStatus(result.message(), !result.success());
@@ -192,9 +153,6 @@ public class CopyController {
         }
     }
 
-    /**
-     * Alterna o estado da UI entre "processando" e "disponível".
-     */
     private void setRunning(boolean running) {
         copyButton.setDisable(running);
         sourceWrapper.setDisable(running);
@@ -206,9 +164,6 @@ public class CopyController {
         }
     }
 
-    /**
-     * Define o texto e o estilo visual do label de status.
-     */
     private void setStatus(String message, boolean isError) {
         statusLabel.setText(message);
         statusLabel.getStyleClass().removeAll("status-success", "status-error");

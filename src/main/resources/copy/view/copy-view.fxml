@@ -9,10 +9,6 @@
 <?import javafx.scene.text.Text?>
 <?import java.net.URL?>
 
-<!--
-    copy-view.fxml — Layout declarativo da tela principal.
-    Ajustado para corresponder fielmente aos mockups (Escuro/Claro).
--->
 <StackPane fx:id="rootPane"
            styleClass="root-pane"
            prefWidth="660"
@@ -25,21 +21,17 @@
         <URL value="@../css/style.css"/>
     </stylesheets>
 
-    <!-- ── Círculos desfocados de fundo (Light Mode) ────────── -->
     <Pane fx:id="backgroundGlowPane" styleClass="background-glow-pane" mouseTransparent="true">
-        <!-- Top Right Glow -->
         <Circle fx:id="glowTopRight" radius="100" layoutX="580" layoutY="80" styleClass="glow-spot, glow-blue">
             <effect>
                 <BoxBlur width="120" height="120" iterations="3"/>
             </effect>
         </Circle>
-        <!-- Bottom Left Glow -->
         <Circle fx:id="glowBottomLeft" radius="90" layoutX="100" layoutY="350" styleClass="glow-spot, glow-green">
             <effect>
                 <BoxBlur width="110" height="110" iterations="3"/>
             </effect>
         </Circle>
-        <!-- Bottom Right Glow -->
         <Circle fx:id="glowBottomRight" radius="80" layoutX="560" layoutY="360" styleClass="glow-spot, glow-purple">
             <effect>
                 <BoxBlur width="100" height="100" iterations="3"/>
@@ -47,21 +39,17 @@
         </Circle>
     </Pane>
 
-    <!-- ── Conteúdo Principal da Aplicação ─────────────────── -->
     <VBox spacing="0" alignment="TOP_CENTER">
         
-        <!-- ── Barra de Título Customizada ─────────────────── -->
         <HBox fx:id="titleBar" styleClass="title-bar" alignment="CENTER_LEFT" prefHeight="35">
             <padding>
                 <Insets left="15" right="10"/>
             </padding>
             
-            <!-- Título da janela -->
             <Label text="Copiador de Diretórios" styleClass="window-title"/>
             
             <Pane HBox.hgrow="ALWAYS" />
             
-            <!-- Controles da janela -->
             <HBox spacing="6" alignment="CENTER">
                 <Button fx:id="themeBtn" onAction="#onToggleTheme" styleClass="window-control-btn, theme-toggle-btn" text="☀"/>
                 <Button onAction="#onMinimize" styleClass="window-control-btn, minimize-btn" text="—"/>
@@ -70,13 +58,11 @@
             </HBox>
         </HBox>
 
-        <!-- Container Interno com Margens -->
         <VBox spacing="20" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
             <padding>
                 <Insets top="15" right="35" bottom="25" left="35"/>
             </padding>
 
-            <!-- ── Header ──────────────────────────────────────── -->
             <VBox spacing="6" alignment="CENTER" styleClass="header-box">
                 <Label text="Copiador de Diretórios" styleClass="title-label"/>
                 <TextFlow styleClass="subtitle-flow" textAlignment="CENTER">
@@ -85,26 +71,20 @@
                 </TextFlow>
             </VBox>
 
-            <!-- ── Grid/HBox de Seleção ────────────────────────── -->
             <HBox spacing="20" alignment="CENTER" fillHeight="true">
                 
-                <!-- Card Esquerdo: Ícone de Pasta Glassmorphic -->
                 <VBox alignment="CENTER" styleClass="card, left-card" prefWidth="150" prefHeight="150">
                     <StackPane styleClass="folder-icon-container">
-                        <!-- Aba traseira da pasta -->
                         <Region styleClass="folder-back"/>
-                        <!-- Aba dianteira da pasta -->
                         <Region styleClass="folder-front"/>
                     </StackPane>
                 </VBox>
                 
-                <!-- Card Direito: Entradas de Texto -->
                 <VBox alignment="CENTER" styleClass="card, right-card" spacing="12" HBox.hgrow="ALWAYS" prefHeight="150">
                     <padding>
                         <Insets top="18" right="18" bottom="18" left="18"/>
                     </padding>
                     
-                    <!-- Campo Origem -->
                     <HBox fx:id="sourceWrapper" styleClass="input-wrapper" alignment="CENTER_LEFT" onMouseClicked="#onBrowseSource">
                         <TextField fx:id="sourceField"
                                    promptText="Selecionar pasta de origem..."
@@ -115,7 +95,6 @@
                         <Label text="&gt;" styleClass="input-chevron"/>
                     </HBox>
                     
-                    <!-- Campo Destino -->
                     <HBox fx:id="destWrapper" styleClass="input-wrapper" alignment="CENTER_LEFT" onMouseClicked="#onBrowseDest">
                         <TextField fx:id="destField"
                                    promptText="Selecionar pasta de destino..."
@@ -128,7 +107,6 @@
                 </VBox>
             </HBox>
 
-            <!-- ── Área de Ação e Feedback ──────────────────────── -->
             <VBox spacing="12" alignment="CENTER" VBox.vgrow="ALWAYS">
                 <Button fx:id="copyButton"
                         text="→   Iniciar Cópia"

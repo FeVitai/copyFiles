@@ -8,19 +8,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-/**
- * Classe de bootstrap da aplicação JavaFX.
- *
- * <p>Responsabilidades únicas desta classe:</p>
- * <ul>
- *   <li>Carregar o arquivo FXML com o {@link FXMLLoader}</li>
- *   <li>Configurar o {@link Stage} (título, dimensões, etc.)</li>
- *   <li>Exibir a janela principal</li>
- * </ul>
- *
- * <p>Esta classe NÃO deve conter lógica de negócio, criação manual
- * de componentes de UI ou qualquer regra da aplicação.</p>
- */
 public class CopyApp extends Application {
 
     private static final String FXML_PATH  = "/copy/view/copy-view.fxml";

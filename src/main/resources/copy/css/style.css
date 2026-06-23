@@ -1,11 +1,3 @@
-/* =====================================================
-   style.css — Folha de estilos do Copiador de Diretórios
-   Totalmente reformulada para suportar Temas Dark e Light.
-   ===================================================== */
-
-/* ── Variáveis globais de cores por tema ─────────────── */
-
-/* Tema Escuro (Padrão) */
 .theme-dark {
     -fx-bg-base: #13141c;
     -fx-bg-gradient: linear-gradient(to bottom right, #1b1d28, #0e0e15);
@@ -37,7 +29,6 @@
     -fx-ctrl-close-hover-bg: #e53e3e;
 }
 
-/* Tema Claro */
 .theme-light {
     -fx-bg-base: #f7fafc;
     -fx-bg-gradient: linear-gradient(to bottom right, #f7fafc, #edf2f7);
@@ -69,7 +60,6 @@
     -fx-ctrl-close-hover-bg: #e53e3e;
 }
 
-/* ── Painel Principal ──────────────────────────────── */
 .root-pane {
     -fx-background-color: -fx-bg-gradient;
     -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -79,32 +69,30 @@
     -fx-border-width: 1px;
 }
 
-/* ── Círculos Coloridos de Fundo (Light Mode) ────────── */
 .background-glow-pane {
     -fx-background-color: transparent;
 }
 
 .glow-spot {
-    -fx-opacity: 0.0; /* Oculto por padrão no tema escuro */
+    -fx-opacity: 0.0;
 }
 
 .theme-light .glow-spot {
-    -fx-opacity: 0.45; /* Visível com suavidade no tema claro */
+    -fx-opacity: 0.45;
 }
 
 .glow-blue {
-    -fx-fill: #bae6fd; /* Ciano claro */
+    -fx-fill: #bae6fd;
 }
 
 .glow-green {
-    -fx-fill: #bbf7d0; /* Verde menta claro */
+    -fx-fill: #bbf7d0;
 }
 
 .glow-purple {
-    -fx-fill: #ddd6fe; /* Roxo claro */
+    -fx-fill: #ddd6fe;
 }
 
-/* ── Barra de Título Customizada ────────────────────── */
 .title-bar {
     -fx-background-color: -fx-title-bar-bg;
     -fx-background-radius: 12px 12px 0px 0px;
@@ -150,7 +138,6 @@
     -fx-opacity: 0.5;
 }
 
-/* ── Elementos de Texto ────────────────────────────── */
 .title-label {
     -fx-font-size: 26px;
     -fx-font-weight: bold;
@@ -171,7 +158,6 @@
     -fx-fill: -fx-text-title;
 }
 
-/* ── Cards Glassmorphic ────────────────────────────── */
 .card {
     -fx-background-color: -fx-card-bg;
     -fx-background-radius: 16px;
@@ -193,7 +179,6 @@
     -fx-max-height: 145px;
 }
 
-/* ── Ícone de Pasta (Glassmorphism 3D) ───────────────── */
 .folder-icon-container {
     -fx-min-width: 72px;
     -fx-min-height: 60px;
@@ -240,7 +225,6 @@
     -fx-border-radius: 8px;
 }
 
-/* ── Campos de Entrada ─────────────────────────────── */
 .input-wrapper {
     -fx-background-color: -fx-input-bg;
     -fx-background-radius: 10px;
@@ -294,7 +278,6 @@
     -fx-text-fill: -fx-input-focused-border;
 }
 
-/* ── Botão Iniciar Cópia ────────────────────────────── */
 .action-button {
     -fx-background-color: -fx-btn-gradient;
     -fx-text-fill: -fx-btn-text;
@@ -320,7 +303,6 @@
     -fx-effect: none;
 }
 
-/* ── Barra de Progresso ────────────────────────────── */
 .progress-bar {
     -fx-pref-height: 6px;
 }
@@ -340,7 +322,6 @@
     -fx-background-insets: 0;
 }
 
-/* ── Feedback de Status ────────────────────────────── */
 .status-label {
     -fx-font-size: 12px;
     -fx-text-fill: -fx-text-subtitle;
